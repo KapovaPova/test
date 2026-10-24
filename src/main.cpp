@@ -26,9 +26,11 @@ int main(int argc, char** argv) {
 
     po::notify(vm);
 
-    unsigned int num_of_threads;
+    unsigned int num_of_threads = 4;
     if (vm.count("threads")) {
-        if (num_of_threads = vm["threads"].as<unsigned int>() < 0 || num_of_threads = vm["threads"].as<unsigned int>() > hardware.concurency()){
+        num_of_threads = vm["threads"].as<unsigned int>();
+        if (num_of_threads == 0 || num_of_threads > std::thread::hardware_concurrency()) {
+            num_of_threads = 4;
             std::cout << "bro, u dont have brain :)" << std::endl;
         } else {
             std::cout << "thread count set to " << vm["threads"].as<unsigned int>() << std::endl;
