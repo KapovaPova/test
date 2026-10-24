@@ -4,7 +4,7 @@
 namespace po = boost::program_options;
 
 int main(int argc, char** argv) {
-    po::options_description desc("super program:");
+    po::options_description desc("super program");
 
     desc.add_options()
         ("help,h", "Show this help message")
