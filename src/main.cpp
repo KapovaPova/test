@@ -4,7 +4,7 @@
 namespace po = boost::program_options;
 
 int main(int argc, char** argv) {
-    po::options_description desc("This program can't do anything!");
+    po::options_description desc("super program:");
 
     desc.add_options()
         ("help,h", "Show this help message")
@@ -22,6 +22,8 @@ int main(int argc, char** argv) {
         std::cout << desc << std::endl;
         return 0;
     }
+
+    po::notify(vm);
 
     return 0;
 }
