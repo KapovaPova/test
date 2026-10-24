@@ -1,8 +1,27 @@
 #include <iostream>
 #include <boost/program_options.hpp>
 
+namespace po = boost::program_options;
+
 int main(int argc, char** argv) {
-    boost::program_options::options_description desc("This program can't do anything!");
-    std::cout << "Hello, world!" << std::endl;
+    po::options_description desc("This program can't do anything!");
+
+    desc.add_options()
+        ("help,h", "Show this help message")
+        ("threads,t", po::value<unsigned int>(), "Number of threads")
+        ("path,p", po::value<std::string>()->required(), "Path for hashes");
+
+    po::variables_map vm;
+
+    po::store(
+        po::parse_command_line(argc, argv, desc),
+        vm
+    );
+
+    if (vm.count("help")) {
+        std::cout << desc << std::endl;
+        return 0;
+    }
+
     return 0;
 }
