@@ -1,5 +1,6 @@
 #include <iostream>
 #include <boost/program_options.hpp>
+#include <thread>
 
 namespace po = boost::program_options;
 
@@ -27,7 +28,11 @@ int main(int argc, char** argv) {
 
     unsigned int num_of_threads;
     if (vm.count("threads")) {
-        num_of_threads = vm["threads"].as<unsigned int>();
+        if (num_of_threads = vm["threads"].as<unsigned int>() < 0 || num_of_threads = vm["threads"].as<unsigned int>() > hardware.concurency()){
+            std::cout << "bro, u dont have brain :)" << std::endl;
+        } else {
+            std::cout << "thread count set to " << vm["threads"].as<unsigned int>() << std::endl;
+        }
     }
 
     return 0;
