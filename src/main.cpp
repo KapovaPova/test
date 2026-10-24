@@ -25,5 +25,10 @@ int main(int argc, char** argv) {
 
     po::notify(vm);
 
+    unsigned int num_of_threads;
+    if (vm.count("threads")) {
+        num_of_threads = vm["threads"].as<unsigned int>();
+    }
+
     return 0;
 }
